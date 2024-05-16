@@ -1,18 +1,16 @@
-import boto3
 import clickhouse_connect
+import vk
 
 
 class ConnectionManager:
     @staticmethod
-    def get_s3_client(self):
-        s3 = boto3.client('s3',
-                          endpoint_url='http://172.17.0.1:9000',
-                          aws_access_key_id='minio_admin',
-                          aws_secret_access_key='minio_admin')
-        return s3
-    
-    @staticmethod
-    def get_clickhouse_conn(self):
+    def get_clickhouse_connect(host, username, password):
         client = clickhouse_connect.get_client(
-            host='172.17.0.1', username='clickhouse_admin', port=8123, password='clickhouse_admin')
+            host=host, username=username, port=8123, password=password)
         return client
+      
+    @staticmethod
+    def get_vk_connect(access_token):
+        V = '5.199'
+        api = vk.API(access_token=access_token, v=V)
+        return api
