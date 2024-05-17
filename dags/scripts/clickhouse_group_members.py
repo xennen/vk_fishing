@@ -14,12 +14,13 @@ class CsvToClickhouse:
             reader_obj = csv.reader(file_obj, delimiter='\t')
             next(reader_obj) # skip header
             reader_obj = list(reader_obj)
-            self.conn.insert('staging.group_members', reader_obj, column_names=columns)
+            self.conn.insert('stg.group_members', reader_obj, column_names=columns)
             self.log.info("Done inserting into clickhouse")
             
     def execute_query(self, name: str) -> None:
         with open(f"dags/scripts/sql/{name}") as sql_file:
             query = sql_file.read()
+            self.log.info(f"Executing query: {query}")
             self.conn.command(query)
         
 

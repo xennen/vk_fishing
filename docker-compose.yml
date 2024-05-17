@@ -305,12 +305,18 @@ services:
       - 9002:9002
 
   metabase:
-    image: metabase/metabase
+    container_name: metabase
+    image: ghcr.io/arkadiuminc/metabase:v0.37.3
     ports:
-      - 3333:3333
+      - 3000:3000
     networks:
       - vk_fishing
     restart: unless-stopped
+    healthcheck:
+      test: curl --fail -I http://localhost:3000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5
 
 networks:
   vk_fishing:

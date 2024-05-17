@@ -9,7 +9,8 @@ SELECT first_name, COUNT(first_name) as count
 SELECT town, AVG(friends_count) AS avg_friends_count
   FROM dds.user
  GROUP BY town
- ORDER BY avg_friends_count DESC;
+ ORDER BY avg_friends_count DESC
+ LIMIT 3;
 
 ---Какой город самый часто встречаемый у участников этой группы
 SELECT town, count(first_name) as members_from_town

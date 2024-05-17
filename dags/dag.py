@@ -36,7 +36,7 @@ def load_dag():
         click_loader.execute_query("drop_table_stg.sql")
         click_loader.execute_query("ddl_stg.sql")
 
-    _create_dds = create_stg()
+    _create_stg = create_stg()
 
     @task(task_id="to_csv")
     def to_csv():
@@ -50,7 +50,7 @@ def load_dag():
                    'contacts', 'friends_count', 'town', 'age']
         click_loader.insert_into_clickhouse(columns)
 
-    _to_clickhouse = to_clickhouse()
+    _to_clickhouse_stg = to_clickhouse()
     
     @task(task_id="create_and_insert_dds")
     def create_and_insert_dds():
@@ -61,7 +61,7 @@ def load_dag():
 
     _create_and_insert_dds = create_and_insert_dds()
 
-    _create_dds >> _to_csv >> _to_clickhouse >> _create_and_insert_dds
+    _create_stg >> _to_csv >> _to_clickhouse_stg >> _create_and_insert_dds
 
 
 _ = load_dag()
