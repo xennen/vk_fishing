@@ -5,7 +5,7 @@
 
     - `/data/members.csv` - csv-файл выгрузки данных из vk.
     - `/dags/dag.py` - DAG, который поставляет данные из vk в csv в одной из тасок.
-    - `/dags/scripts/vk_group_members.py` - cкрипт с логикой отправки данных из VK в csv.
+    - `/dags/scripts/vk_group_members.py` - cкрипт с логикой отправки данных из vk в csv.
     - `/dags/connections/connection_manager` - скрипт с подключением к vk.
 2. Загрузить все данные в Clickhouse, архитектуру бд нужно составить самостоятельно:
     - `/dags/dag.py` - DAG, который поставляет данные из csv в БД в одной из тасок.
