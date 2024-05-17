@@ -18,7 +18,7 @@ cd vk_fishing
 docker-compose up -d
 ```
 
-Получаем ACCESS TOKEN VK на [vkhost.github](https://vkhost.github.io/)
+Получаем ACCESS TOKEN VK на [docs](https://vk.readthedocs.io/en/latest/vk-api.html#getting-access)
 
 Заходим в [AIRFLOW](http://localhost:8080/) -> ADMIN -> VARIABLES
 
